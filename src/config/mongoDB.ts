@@ -6,6 +6,7 @@ export default async function connectToDatabase() {
     await mongoose.connect(`${process.env.MONGODB_URI}`);
     console.log("Conexión a la Base de Datos establecida.");
   } catch (error) {
-    console.error("Error al conectar a la Base de Datos:", error);
+    // console.error("Error al conectar a la Base de Datos:", error);
+    console.error("Error al conectar a la Base de Datos:");
   }
 }
