@@ -13,5 +13,4 @@ app.listen(PORT, () => {
   console.log("############ API REST #################");
   console.log(`edeyá running on port ${PORT}`);
   console.log(`http://${process.env.IP_SERVER}:${PORT}/api`);
-  console.log("#######################################");
 });
