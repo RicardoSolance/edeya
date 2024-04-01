@@ -1,8 +1,10 @@
 import { Request, Response, Router } from "express";
-const router = Router();
+import { registerUser } from "../controller/Users";
+const api = Router();
 
-router.get("/users", (_req: Request, res: Response) => {
+api.get("/users", (_req: Request, res: Response) => {
   res.send("Hello from all users route");
 });
+api.post("/user", registerUser);
 
-export default router;
+export default api;
