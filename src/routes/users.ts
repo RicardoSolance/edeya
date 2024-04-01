@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 const router = Router();
 
 router.get("/users", (_req: Request, res: Response) => {
-  res.send("all users route");
+  res.send("Hello from all users route");
 });
 
 export default router;
