@@ -6,12 +6,13 @@ import User from "../model/User";
 const registerUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { email, password, name, surname } = req.body;
   const salt = bcrypt.genSaltSync(10);
-
   try {
     const hashedPassword = bcrypt.hashSync(password, salt);
-    const user = await User.findOne({ email, password: hashedPassword });
+    if (!email) res.status(400).send({ msg: "El email es obligatorio" });
+    if (!password) res.status(400).send({ msg: "la contrseña es obligatoria" });
+    const user = await User.findOne({ email });
     if (user) {
-      throw new BadRequestError("Este ya existe");
+      throw new BadRequestError("Credenciales erroneas");
     } else {
       const newUser = new User({
         email: email,
@@ -21,11 +22,20 @@ const registerUser = async (req: Request, res: Response, next: NextFunction): Pr
       });
 
       await newUser.save();
-      res.json({ message: email + " Usuario registrado" });
+      res.json({ message: " Usuario registrado" });
     }
   } catch (error) {
     next(error);
   }
 };
 
-export { registerUser };
+async function getUsers(_req: Request, res: Response, next: NextFunction) {
+  try {
+    const users = await User.find({});
+    res.json(users);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export { registerUser, getUsers };
