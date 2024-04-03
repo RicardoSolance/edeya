@@ -4,6 +4,7 @@ import { VALID_EMAIL } from "../helpers/utils";
 const userTypes = ["jobSeeker", "recruiter", "business"] as const;
 export type UserType = (typeof userTypes)[number];
 
+export type genderType = "man" | "woman" | "unknown";
 export interface User {
   email: string;
   password: string;
@@ -14,6 +15,8 @@ export interface User {
   profilePhoto: string | null;
   phone: number | null;
   userType: UserType;
+  gender: genderType;
+  dateOfBirth: Date;
 }
 
 const userSchema = new mongoose.Schema<User>({
@@ -25,6 +28,8 @@ const userSchema = new mongoose.Schema<User>({
   surname: { type: String, required: true, lowercase: true },
   profilePhoto: { type: String, required: false, trim: true },
   phone: { type: String, required: false },
+  gender: { type: String, required: false, default: "unknown" },
+  dateOfBirth: { type: Date, required: false },
 });
 
 userSchema.set("toObject", { virtuals: true });
