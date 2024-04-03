@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import connectToDataBase from "./config/mongoDB";
 import cors from "cors";
-import { routing } from "./routes/routing";
+import routing from "./routes/routing";
 
 const app = express();
 app.use(cors());
