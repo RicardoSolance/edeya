@@ -1,25 +1,8 @@
 import mongoose from "mongoose";
 import { VALID_EMAIL } from "../helpers/utils";
+import { UserProps, userTypes } from "../types/userTypes";
 
-const userTypes = ["jobSeeker", "recruiter", "business"] as const;
-export type UserType = (typeof userTypes)[number];
-
-export type genderType = "man" | "woman" | "unknown";
-export interface User {
-  email: string;
-  password: string;
-  role: UserType;
-  active: boolean;
-  name: string;
-  surname: string;
-  profilePhoto: string | null;
-  phone: number | null;
-  userType: UserType;
-  gender: genderType;
-  dateOfBirth: Date;
-}
-
-const userSchema = new mongoose.Schema<User>({
+const userSchema = new mongoose.Schema<UserProps>({
   email: { type: String, required: true, index: true, unique: true, lowercase: true, trim: true, match: VALID_EMAIL },
   password: { type: String, required: true, select: false },
   role: { type: String, required: true, enum: userTypes, default: "jobSeeker" },
@@ -35,4 +18,4 @@ const userSchema = new mongoose.Schema<User>({
 userSchema.set("toObject", { virtuals: true });
 userSchema.set("toJSON", { virtuals: true });
 
-export default mongoose.model<User>("User", userSchema);
+export default mongoose.model<UserProps>("User", userSchema);

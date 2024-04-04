@@ -5,7 +5,6 @@ export default class PathGenerator {
   // EL PATH GENERATOR ME PETA SI DESCOMENTO ESTA LÍNEA
   constructor(domain?: string, prepend = false) {
     this.domain = domain || "";
-    // if (this.domain.endsWith('/')) this.domain = this.domain.slice(0, -1);
     this.prepend = prepend;
   }
 
