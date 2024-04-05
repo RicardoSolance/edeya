@@ -1,6 +1,7 @@
 import mongoose, { Types } from "mongoose";
 import { RecruiterModel } from "../types/recruiterTypes";
 import { VALID_EMAIL } from "../helpers/utils";
+import { userTypes } from "../types/userTypes";
 
 const recruiterSchema = new mongoose.Schema<RecruiterModel>(
   {
@@ -40,6 +41,7 @@ const recruiterSchema = new mongoose.Schema<RecruiterModel>(
     },
     password: { type: String, required: true, select: false },
     recruiterId: { type: Types.ObjectId, required: false },
+    role: { type: String, required: true, enum: userTypes, default: "recruiter" },
     totalEmployees: { type: Number, required: false },
     website: { type: String, required: false },
   },

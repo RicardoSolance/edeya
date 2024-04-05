@@ -1,4 +1,5 @@
 import { ObjectId, Document } from "mongoose";
+import { UserType } from "./userTypes";
 
 export interface RecruiterProps {
   about?: string;
@@ -13,6 +14,7 @@ export interface RecruiterProps {
   recruiterId?: ObjectId;
   website?: string;
   password: string;
+  role: UserType;
 }
 
 export interface Address {
