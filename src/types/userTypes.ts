@@ -3,15 +3,15 @@ export type UserType = (typeof userTypes)[number];
 
 export type genderType = "man" | "woman" | "unknown";
 export interface UserProps {
-  email: string;
-  password: string;
-  role: UserType;
   active: boolean;
-  name: string;
-  surname: string;
-  profilePhoto: string | null;
-  phone: number | null;
-  userType: UserType;
-  gender: genderType;
+  avatar: string | null;
   dateOfBirth: Date;
+  email: string;
+  gender: genderType;
+  name: string;
+  password: string;
+  phone: number | null;
+  role: UserType;
+  surname: string;
+  userType: UserType;
 }
