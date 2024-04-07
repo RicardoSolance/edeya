@@ -16,6 +16,7 @@ const jobSchema = new mongoose.Schema<jobModel>(
     },
     description: { type: String, required: false },
     hasProbationPeriod: { type: Boolean, required: false, default: false },
+    jobId: { type: String, ruquired: false },
     location: {
       city: {
         type: String,

@@ -37,6 +37,7 @@ export interface jobProps {
   category?: jobCategory;
   description?: string;
   hasProbationPeriod?: boolean;
+  jobId: String;
   location?: jobLocation;
   optionalSkills?: string[];
   probationDuration?: number;

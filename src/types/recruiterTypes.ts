@@ -1,33 +1,11 @@
-import { ObjectId, Document } from "mongoose";
-import { UserType } from "./userTypes";
+import { ObjectId } from "mongoose";
 
-export interface RecruiterProps {
-  about?: string;
-  address?: Address;
-  companyName: string;
-  companyEmail: string;
-  companyType?: string;
-  designation: string;
-  industryType?: string;
-  logoUrl?: string;
-  totalEmployees?: number;
-  recruiterId?: ObjectId;
-  website?: string;
+export interface recruiterProps {
+  active: boolean;
+  avatar: string | null;
+  email: string;
+  name: string;
   password: string;
-  role: UserType;
-}
-
-export interface Address {
-  addressLine1: string;
-  addressLine2?: string;
-  city: string;
-  country: string;
-  pincode: string;
-  province: string;
-}
-
-export interface RecruiterModel extends RecruiterProps, Document {
-  jobPostsCount?: number;
-  createdAt: Date;
-  updatedAt: Date;
+  role: string;
+  company: ObjectId;
 }

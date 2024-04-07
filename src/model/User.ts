@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema<UserProps>({
   email: { type: String, required: true, index: true, unique: true, lowercase: true, trim: true, match: VALID_EMAIL },
   gender: { type: String, required: false, default: "unknown" },
   name: { type: String, required: true, lowercase: true },
+  notifications: { type: Boolean, required: false, dafault: false },
   password: { type: String, required: true, select: false },
   phone: { type: String, required: false },
   role: { type: String, required: true, enum: userTypes, default: "jobSeeker" },
