@@ -8,7 +8,7 @@ import { isAuthenticated as isAuth, isBusiness as isAdmin } from "../middlewares
 
 const path = new PathGenerator("", false);
 
-export default function routing(app: Express): void {
+export const routing = (app: Express): void => {
   app.get("/", index);
 
   // AUTH RUTES
