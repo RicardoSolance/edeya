@@ -19,13 +19,20 @@ export default class PathGenerator {
     login: (): string => {
       return this.prependDom("/user/login");
     },
+  };
+
+  user = {
+    getUsers: (): string => {
+      return this.prependDom("/user/getUsers");
+    },
     register: (): string => {
       return this.prependDom("/user/register");
     },
   };
-  user = {
-    getUsers: (): string => {
-      return this.prependDom("/user/getUsers");
+
+  recruiter = {
+    register: (): string => {
+      return this.prependDom("/recruiter/register");
     },
   };
 }

@@ -46,13 +46,15 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
     if (userRegistered) {
       const expires = Date.now() + SESSION_TIME * 1000;
 
-      const token = jwt.sign({ email, role: userRegistered.role }, `${process.env.TOKEN_SECRET}`, {
-        expiresIn: SESSION_TIME,
-      });
+      const token = jwt.sign(
+        { token_type: "access", email, role: userRegistered.role },
+        `${process.env.TOKEN_SECRET}`,
+        {
+          expiresIn: SESSION_TIME,
+        }
+      );
 
-      const { _id, name, surname, gender, role, avatar } = userRegistered;
-
-      res.json({ email, token, expires, role, id: _id, name, surname, gender, avatar });
+      res.json({ token, expires });
     } else {
       throw new BadRequestError("Usuario y password no coinciden");
     }
