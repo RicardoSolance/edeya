@@ -1,11 +1,12 @@
 import { Express } from "express";
 import { index } from "../controller/sampler";
 import PathGenerator from "./pathCreator";
-import { getUsers } from "../controller/Users";
-import { registerUser, login } from "../controller/Auth";
+import { getUsers, registerUser } from "../controller/Users";
+import { login } from "../controller/Auth";
 import { registerCompany } from "../controller/Company";
 // import { createJob } from "../controller/jobs";
-import { isAuthenticated as isAuth, isBusiness as isAdmin } from "../middlewares/auth";
+import { isAuthenticated as isAuth, isBusiness } from "../middlewares/auth";
+import { registerRecruiter } from "../controller/Recruiter";
 
 const path = new PathGenerator("", false);
 
@@ -17,8 +18,11 @@ export const routing = (app: Express): void => {
 
   // USER ROUTES
   app.post(path.user.register(), registerUser);
-  app.get(path.user.getUsers(), isAuth, isAdmin, getUsers);
+  app.get(path.user.getUsers(), isAuth, isBusiness, getUsers);
+
+  // COMPANY ROUTES
+  app.post(path.company.register(), registerCompany);
 
   // RECRUITER ROUTES
-  app.post(path.company.register(), registerCompany);
+  app.post(path.recruiter.register(), isAuth, isBusiness, registerRecruiter);
 }
