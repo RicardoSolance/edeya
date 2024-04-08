@@ -35,6 +35,12 @@ export default class PathGenerator {
       return this.prependDom("/company/register");
     },
   };
+
+  recruiter = {
+    register: (): string => {
+      return this.prependDom("/recruiter/register");
+    },
+  };
   // JOB
   job = {
     create: (): string => {
