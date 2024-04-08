@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { SHA256 } from "crypto-js";
-import Recruiter from "../model/Recruiter";
+import Company from "../model/Company";
 
-export const registerRecruiter = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const registerCompany = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { companyEmail, password } = req.body;
   try {
     const hashedPassword = SHA256(password).toString();
@@ -11,19 +11,19 @@ export const registerRecruiter = async (req: Request, res: Response, next: NextF
 
     if (!password) res.status(400).send({ msg: "la contrseña es obligatoria" });
 
-    const recruiterExist = await Recruiter.findOne({ companyEmail });
+    const companyExist = await Company.findOne({ companyEmail });
 
-    if (recruiterExist) {
-      res.json({ message: "Este correo ya tiene un usuario registrado." });
+    if (companyExist) {
+      res.json({ message: "Credenciales erroneas" });
     } else {
-      const newUser = new Recruiter({
+      const newCompany = new Company({
         ...req.body,
         password: hashedPassword,
       });
 
-      await newUser.save();
+      await newCompany.save();
 
-      res.json({ message: " Usuario registrado" });
+      res.json({ message: " Empresa registrada con exito" });
     }
   } catch (error) {
     next(error);

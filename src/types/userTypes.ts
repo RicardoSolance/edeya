@@ -9,6 +9,7 @@ export interface UserProps {
   email: string;
   gender: genderType;
   name: string;
+  notifications: boolean;
   password: string;
   phone: number | null;
   role: UserType;

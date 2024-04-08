@@ -36,6 +36,8 @@ export const registerUser = async (req: Request, res: Response, next: NextFuncti
   }
 };
 
+//TODO: find a way to centralize the login
+//user login
 export const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const { email, password } = req.body;
   try {
