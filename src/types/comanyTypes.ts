@@ -1,7 +1,7 @@
 import { ObjectId, Document } from "mongoose";
 import { UserType } from "./userTypes";
 
-export interface companyProps {
+export interface CompanyProps {
   about?: string;
   address?: Address;
   companyName: string;
@@ -27,7 +27,7 @@ export interface Address {
   province: string;
 }
 
-export interface companyModel extends companyProps, Document {
+export interface CompanyModel extends CompanyProps, Document {
   jobPostsCount?: number;
   createdAt: Date;
   updatedAt: Date;

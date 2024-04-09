@@ -32,7 +32,7 @@ export enum jobCategory {
   Technology = "technology",
 }
 
-export interface jobProps {
+export interface JobProps {
   benefits?: string[];
   category?: jobCategory;
   description?: string;
@@ -48,7 +48,7 @@ export interface jobProps {
   workExperience: workExperience;
 }
 
-export interface jobModel extends jobProps, Document {
+export interface JobModel extends JobProps, Document {
   applicants: number;
   createdAt: Date;
   updatedAt: Date;

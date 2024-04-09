@@ -1,7 +1,7 @@
 import mongoose, { Types } from "mongoose";
-import { jobModel, jobCategory } from "../types/jobTypes";
+import { JobModel, jobCategory } from "../types/jobTypes";
 
-const jobSchema = new mongoose.Schema<jobModel>(
+const jobSchema = new mongoose.Schema<JobModel>(
   {
     applicants: {
       type: Number,
@@ -98,4 +98,4 @@ const jobSchema = new mongoose.Schema<jobModel>(
 jobSchema.set("toObject", { virtuals: true });
 jobSchema.set("toJSON", { virtuals: true });
 
-export default mongoose.model<jobModel>("Job", jobSchema);
+export default mongoose.model<JobModel>("Job", jobSchema);

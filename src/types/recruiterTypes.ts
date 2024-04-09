@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 
-export interface recruiterProps {
+export interface RecruiterProps {
   active: boolean;
   avatar: string | null;
   email: string;
