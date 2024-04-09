@@ -1,9 +1,9 @@
 import mongoose, { Types } from "mongoose";
-import { companyModel } from "../types/comanyTypes";
+import { CompanyModel } from "../types/comanyTypes";
 import { VALID_EMAIL } from "../helpers/utils";
 import { userTypes } from "../types/userTypes";
 
-const companySchema = new mongoose.Schema<companyModel>(
+const companySchema = new mongoose.Schema<CompanyModel>(
   {
     about: { type: String, maxlength: 1000, required: false },
     address: {
@@ -52,4 +52,4 @@ const companySchema = new mongoose.Schema<companyModel>(
 companySchema.set("toObject", { virtuals: true });
 companySchema.set("toJSON", { virtuals: true });
 
-export default mongoose.model<companyModel>("Company", companySchema);
+export default mongoose.model<CompanyModel>("Company", companySchema);

@@ -1,9 +1,9 @@
 import mongoose, { Types } from "mongoose";
 import { userTypes } from "../types/userTypes";
-import { recruiterProps } from "../types/recruiterTypes";
+import { RecruiterProps } from "../types/recruiterTypes";
 import { VALID_EMAIL } from "../helpers/utils";
 
-const recruiterSchema = new mongoose.Schema<recruiterProps>({
+const recruiterSchema = new mongoose.Schema<RecruiterProps>({
   active: { type: Boolean, default: true },
   avatar: { type: String, required: false, trim: true },
   company: { type: Types.ObjectId, ref: "Company" },
@@ -16,4 +16,4 @@ const recruiterSchema = new mongoose.Schema<recruiterProps>({
 recruiterSchema.set("toObject", { virtuals: true });
 recruiterSchema.set("toJSON", { virtuals: true });
 
-export default mongoose.model<recruiterProps>("Recruiter", recruiterSchema);
+export default mongoose.model<RecruiterProps>("Recruiter", recruiterSchema);
