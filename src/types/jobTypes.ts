@@ -33,8 +33,10 @@ export enum jobCategory {
 }
 
 export interface JobProps {
+  active?: string;
   benefits?: string[];
   category?: jobCategory;
+  companyId?: ObjectId;
   description?: string;
   hasProbationPeriod?: boolean;
   jobId: String;
@@ -42,7 +44,7 @@ export interface JobProps {
   optionalSkills?: string[];
   probationDuration?: number;
   recruiterId?: ObjectId;
-  requirdSkills?: string[];
+  requiredSkills?: string[];
   salary?: salaryRangeType;
   title: string;
   workExperience: workExperience;
@@ -53,3 +55,4 @@ export interface JobModel extends JobProps, Document {
   createdAt: Date;
   updatedAt: Date;
 }
+

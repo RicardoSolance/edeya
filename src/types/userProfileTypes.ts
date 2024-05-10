@@ -3,11 +3,11 @@ import { ObjectId } from "mongoose";
 export interface UserProfileProps {
   about: string;
   education: EducationType[];
-  experince: ExperienceType[];
+  experience: ExperienceType[];
+  hobbies: string[];
   language: languageTypes[];
   linkedIn: string;
   skills: string[];
-  hobbies: string[];
   status: statusTypes;
   userId: ObjectId;
 }
@@ -28,7 +28,7 @@ export enum statusTypes {
 export enum languageTypes {
   English = "Inglés",
   French = "Francés",
-  Spanish = "Castellano",
+  Spanish = "Español",
   Arabic = "Árabe",
   Russian = "Ruso",
   German = "Alemán",
@@ -41,14 +41,14 @@ export enum languageTypes {
 }
 
 export interface EducationType {
-  educationLevel: EducationLevlType;
+  educationLevel: EducationLevelType;
   endDate: Date;
   school: string;
   skills: string[];
   startDate: Date;
 }
 
-export enum EducationLevlType {
+export enum EducationLevelType {
   Doctorate = "Doctorado",
   Master = "Master",
   PostGraduate = "Postgrado",

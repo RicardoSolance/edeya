@@ -2,7 +2,6 @@ export default class PathGenerator {
   private domain: string;
   public prepend: boolean;
 
-  // EL PATH GENERATOR ME PETA SI DESCOMENTO ESTA LÍNEA
   constructor(domain?: string, prepend = false) {
     this.domain = domain || "";
     this.prepend = prepend;
@@ -10,7 +9,9 @@ export default class PathGenerator {
 
   protected prependDom(path: string): string {
     let out = this.domain;
-    const formattedPath = path.startsWith("/") ? `${out}/${path.substring(1)}` : `${out}/${path}`;
+    const formattedPath = path.startsWith("/api/")
+      ? `${out}/${path.substring(1)}`
+      : `${out}/${path}`;
     const basePath = this.prepend ? formattedPath : path;
     return basePath;
   }
@@ -21,12 +22,21 @@ export default class PathGenerator {
     },
   };
 
+  corporative = {
+    login: (): string => {
+      return this.prependDom("/corp/login");
+    },
+  };
+
   user = {
     getUsers: (): string => {
       return this.prependDom("/user/getUsers");
     },
     register: (): string => {
       return this.prependDom("/user/register");
+    },
+    getMe: (): string => {
+      return this.prependDom("/user/getme");
     },
   };
 
@@ -45,6 +55,16 @@ export default class PathGenerator {
   job = {
     create: (): string => {
       return this.prependDom("/job/create");
+    },
+    getJobList: (): string => {
+      return this.prependDom("/jobs");
+    },
+  };
+
+  // ADMIN
+  admin = {
+    getInactiveUsers: (): string => {
+      return this.prependDom("/admin/inactiveUsers");
     },
   };
 }

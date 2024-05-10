@@ -3,6 +3,7 @@ import { JobModel, jobCategory } from "../types/jobTypes";
 
 const jobSchema = new mongoose.Schema<JobModel>(
   {
+    active: { type: Boolean, required: false, default: true },
     applicants: {
       type: Number,
       default: 0,
@@ -14,9 +15,10 @@ const jobSchema = new mongoose.Schema<JobModel>(
       required: false,
       enum: jobCategory,
     },
+    companyId: { type: mongoose.SchemaTypes.ObjectId, ref: "Company", required: true },
     description: { type: String, required: false },
     hasProbationPeriod: { type: Boolean, required: false, default: false },
-    jobId: { type: String, ruquired: false },
+    jobId: { type: String, required: true },
     location: {
       city: {
         type: String,
@@ -31,6 +33,7 @@ const jobSchema = new mongoose.Schema<JobModel>(
       country: {
         type: String,
         maxlength: 100,
+        required: false,
       },
     },
     optionalSkills: {
@@ -46,7 +49,7 @@ const jobSchema = new mongoose.Schema<JobModel>(
       type: Types.ObjectId,
       required: false,
     },
-    requirdSkills: {
+    requiredSkills: {
       type: [String],
       default: [],
       required: false,
@@ -54,7 +57,7 @@ const jobSchema = new mongoose.Schema<JobModel>(
     salary: {
       minSalary: {
         type: Number,
-        required: true,
+        required: false,
         min: 0,
         validate: [
           {
@@ -65,7 +68,7 @@ const jobSchema = new mongoose.Schema<JobModel>(
       },
       maxSalary: {
         type: Number,
-        required: true,
+        required: false,
         min: 0,
         validate: [
           {
@@ -94,6 +97,18 @@ const jobSchema = new mongoose.Schema<JobModel>(
   },
   { timestamps: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
+
+jobSchema.virtual("Company", {
+  ref: "Company",
+  foreignField: "_id",
+  localField: "companyId",
+});
+
+jobSchema.virtual("Recruiter", {
+  ref: "Recruiter",
+  foreignField: "_id",
+  localField: "recruiterId",
+});
 
 jobSchema.set("toObject", { virtuals: true });
 jobSchema.set("toJSON", { virtuals: true });

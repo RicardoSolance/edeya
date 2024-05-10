@@ -1,1 +1,1 @@
-export const SESSION_TIME = 30 * 60;
+export const SESSION_TIME = 60 * 60;

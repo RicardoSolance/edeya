@@ -1,4 +1,6 @@
-export const userTypes = ["jobSeeker", "recruiter", "business"] as const;
+import { ObjectId } from "mongoose";
+
+export const userTypes = ["jobSeeker", "recruiter", "business", "super-admin"] as const;
 export type UserType = (typeof userTypes)[number];
 
 export type genderType = "man" | "woman" | "unknown";
@@ -15,4 +17,5 @@ export interface UserProps {
   role: UserType;
   surname: string;
   userType: UserType;
+  userProfileId: ObjectId;
 }
