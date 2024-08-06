@@ -55,3 +55,4 @@ export interface JobModel extends JobProps, Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
