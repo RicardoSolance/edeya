@@ -35,7 +35,7 @@ import Job from "../model/Job";
 // };
 
 // Función para manejar errores
-const handleError = (error: Error, next: NextFunction) => {
+const handleError = (error: unknown, next: NextFunction) => {
   next(error);
 };
 
