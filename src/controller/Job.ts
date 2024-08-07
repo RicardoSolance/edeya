@@ -44,3 +44,28 @@ export const jobList = async (_req: Request, res: Response, next: NextFunction):
     next(error);
   }
 };
+
+export const getJob = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const { jobId } = req.params;
+
+    const job = await Job.findOne({ jobId })
+      .populate({
+        path: "companyId",
+        select: "-recruiters",
+      })
+      .populate({
+        path: "recruiterId",
+        select: "name email",
+      });
+
+    if (!job) {
+      res.status(404).json({ message: "Job not found" });
+      return;
+    }
+
+    res.json(job);
+  } catch (error) {
+    next(error);
+  }
+};
