@@ -61,6 +61,12 @@ export default class PathGenerator {
     },
   };
 
+  jobApplication = {
+    apply: (): string => {
+      return this.prependDom("/job/apply");
+    },
+  };
+
   // ADMIN
   admin = {
     getInactiveUsers: (): string => {
