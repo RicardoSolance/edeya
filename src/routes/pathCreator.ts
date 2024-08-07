@@ -59,6 +59,15 @@ export default class PathGenerator {
     getJobList: (): string => {
       return this.prependDom("/jobs");
     },
+    getJob: (): string => {
+      return this.prependDom("/job/:jobId");
+    },
+  };
+
+  jobApplication = {
+    apply: (): string => {
+      return this.prependDom("/job/apply");
+    },
   };
 
   // ADMIN

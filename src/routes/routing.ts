@@ -4,9 +4,10 @@ import PathGenerator from "./pathCreator";
 import { getInactiveUsers, getMe, getUsers, registerUser } from "../controller/Users";
 import { login, session } from "../controller/Auth";
 import { registerCompany } from "../controller/Company";
-import { createJob, jobList } from "../controller/Job";
+import { createJob, getJob, jobList } from "../controller/Job";
 import { isAuthenticated as isAuth, isBusiness, isRecruiter, isAdmin } from "../middlewares/auth";
 import { registerRecruiter } from "../controller/Recruiter";
+import { applyForJob } from "../controller/JobApplication";
 
 const path = new PathGenerator("", false);
 
@@ -31,6 +32,10 @@ export default function routing(app: Express): void {
   //JOB
   app.post(path.job.create(), isAuth, isRecruiter, createJob);
   app.get(path.job.getJobList(), jobList);
+  app.get(path.job.getJob(), getJob);
+
+  //JOB APPLICATION
+  app.post(path.jobApplication.apply(), isAuth, applyForJob);
 
   //ADMIN
   app.get(path.admin.getInactiveUsers(), isAuth, isAdmin, getInactiveUsers);
