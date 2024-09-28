@@ -63,5 +63,5 @@ export const isBusiness = async (
   next: NextFunction
 ): Promise<void> => {
   if (res.locals.role === userTypes[2]) next();
-  else next(new HttpError(httpCodes.FORBIDDEN, "permiso denegado"));
+  else next(new HttpError(httpCodes.FORBIDDEN, "Permiso denegado"));
 };

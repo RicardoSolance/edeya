@@ -1,4 +1,4 @@
-import mongoose, { Types } from "mongoose";
+import mongoose from "mongoose";
 import { JobModel, jobCategory } from "../types/jobTypes";
 
 const jobSchema = new mongoose.Schema<JobModel>(
@@ -46,8 +46,9 @@ const jobSchema = new mongoose.Schema<JobModel>(
       required: false,
     },
     recruiterId: {
-      type: Types.ObjectId,
+      ref: "Recruiter",
       required: false,
+      type: mongoose.SchemaTypes.ObjectId,
     },
     requiredSkills: {
       type: [String],
