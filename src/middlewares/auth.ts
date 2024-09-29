@@ -49,6 +49,7 @@ export const isRecruiter = async (
       new HttpError(httpCodes.FORBIDDEN, "this action can only be made by a register recruiter")
     );
 };
+
 export const isAdmin = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
   if (res.locals.role === userTypes[3]) next();
   else

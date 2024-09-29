@@ -8,6 +8,7 @@ import { createJob, getJob, jobList } from "../controller/Job";
 import { isAuthenticated as isAuth, isBusiness, isRecruiter, isAdmin } from "../middlewares/auth";
 import { registerRecruiter } from "../controller/Recruiter";
 import { applyForJob } from "../controller/JobApplication";
+import { isCompanyCreator } from "../middlewares/jobApplicationMiddlewares";
 
 const path = new PathGenerator("", false);
 
@@ -36,6 +37,7 @@ export default function routing(app: Express): void {
 
   //JOB APPLICATION
   app.post(path.jobApplication.apply(), isAuth, applyForJob);
+  app.patch(path.jobApplication.updateStatus(), isAuth, isCompanyCreator);
 
   //ADMIN
   app.get(path.admin.getInactiveUsers(), isAuth, isAdmin, getInactiveUsers);

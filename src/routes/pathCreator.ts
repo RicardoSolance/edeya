@@ -66,7 +66,10 @@ export default class PathGenerator {
 
   jobApplication = {
     apply: (): string => {
-      return this.prependDom("/job/apply");
+      return this.prependDom("/application/apply");
+    },
+    updateStatus: (): string => {
+      return this.prependDom("/application/:applicationId");
     },
   };
 
