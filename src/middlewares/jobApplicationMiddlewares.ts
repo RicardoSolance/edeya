@@ -4,7 +4,10 @@ import Company from "../model/Company";
 import HttpError from "../errors/HttpError";
 import httpCodes from "../helpers/httpCodes";
 
-// Función para validar trabajo y empresa
+/**
+ * Función para validar trabajo y empresa
+ */
+
 const findJobAndCompany = async (jobId: string) => {
   const job = await Job.findById(jobId);
   if (!job) {

@@ -40,23 +40,6 @@ export const applyForJob = async (req: Request, res: Response, next: NextFunctio
   }
 };
 
-//Obtener todas las aplicaciones de un usuario
-export const getUserJobApplications = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { userId } = res.locals.id;
-
-    const applications = await JobApplication.find({ userId });
-
-    if (!applications || applications.length === 0) {
-      throw new BadRequestError("No job applications found for this user");
-    }
-
-    res.status(200).json({ applications });
-  } catch (error) {
-    next(error);
-  }
-};
-
 /**
  * 
 Esta funcion actuliza el estado de una applicación

@@ -5,6 +5,7 @@ import { SHA256 } from "crypto-js";
 import { userTypes } from "../types/userTypes";
 import BadRequestError from "../errors/BadRequestError";
 import UserProfile from "../model/UserProfile";
+import JobApplication from "../model/JobApplication";
 
 export const registerUser = async (
   req: Request,
@@ -90,3 +91,19 @@ export const getInactiveUsers = async (_req: Request, res: Response, next: NextF
   }
 };
 
+//Obtener todas las aplicaciones de un usuario
+export const getMyJobApplications = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { userId } = res.locals.id;
+
+    const applications = await JobApplication.find({ userId });
+
+    if (!applications || applications.length === 0) {
+      throw new BadRequestError("No job applications found for this user");
+    }
+
+    res.status(200).json({ applications });
+  } catch (error) {
+    next(error);
+  }
+};
